@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
- *  Copyright 2007-2009 (c) Jeff Brown <spadix@users.sourceforge.net>
+ *  Copyright 2010 (c) Jeff Brown <spadix@users.sourceforge.net>
  *
  *  This file is part of the ZBar Bar Code Reader.
  *
@@ -20,32 +20,30 @@
  *
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
-#ifndef _CODE128_H_
-#define _CODE128_H_
+#ifndef _CODE93_H_
+#define _CODE93_H_
 
-/* Code 128 specific decode state */
-typedef struct code128_decoder_s {
+/* Code 93 specific decode state */
+typedef struct code93_decoder_s {
     unsigned direction : 1;     /* scan direction: 0=fwd/space, 1=rev/bar */
     unsigned element : 3;       /* element offset 0-5 */
     int character : 12;         /* character position in symbol */
-    unsigned char start;        /* start character */
-    unsigned s6;                /* character width */
     unsigned width;             /* last character width */
+    unsigned char buf;          /* first character */
 
     unsigned config;
     int configs[NUM_CFGS];      /* int valued configurations */
-} code128_decoder_t;
+} code93_decoder_t;
 
-/* reset Code 128 specific state */
-static inline void code128_reset (code128_decoder_t *dcode128)
+/* reset Code 93 specific state */
+static inline void code93_reset (code93_decoder_t *dcode93)
 {
-    dcode128->direction = 0;
-    dcode128->element = 0;
-    dcode128->character = -1;
-    dcode128->s6 = 0;
+    dcode93->direction = 0;
+    dcode93->element = 0;
+    dcode93->character = -1;
 }
 
-/* decode Code 128 symbols */
-zbar_symbol_type_t _zbar_decode_code128(zbar_decoder_t *dcode);
+/* decode Code 93 symbols */
+zbar_symbol_type_t _zbar_decode_code93(zbar_decoder_t *dcode);
 
 #endif

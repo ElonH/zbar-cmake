@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
- *  Copyright 2007-2009 (c) Jeff Brown <spadix@users.sourceforge.net>
+ *  Copyright 2011 (c) Jeff Brown <spadix@users.sourceforge.net>
  *
  *  This file is part of the ZBar Bar Code Reader.
  *
@@ -20,32 +20,32 @@
  *
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
-#ifndef _CODE128_H_
-#define _CODE128_H_
+#ifndef _CODABAR_H_
+#define _CODABAR_H_
 
-/* Code 128 specific decode state */
-typedef struct code128_decoder_s {
-    unsigned direction : 1;     /* scan direction: 0=fwd/space, 1=rev/bar */
-    unsigned element : 3;       /* element offset 0-5 */
+/* Codabar specific decode state */
+typedef struct codabar_decoder_s {
+    unsigned direction : 1;     /* scan direction: 0=fwd, 1=rev */
+    unsigned element : 4;       /* element offset 0-7 */
     int character : 12;         /* character position in symbol */
-    unsigned char start;        /* start character */
-    unsigned s6;                /* character width */
+    unsigned s7;                /* current character width */
     unsigned width;             /* last character width */
+    unsigned char buf[6];       /* initial scan buffer */
 
     unsigned config;
     int configs[NUM_CFGS];      /* int valued configurations */
-} code128_decoder_t;
+} codabar_decoder_t;
 
-/* reset Code 128 specific state */
-static inline void code128_reset (code128_decoder_t *dcode128)
+/* reset Codabar specific state */
+static inline void codabar_reset (codabar_decoder_t *codabar)
 {
-    dcode128->direction = 0;
-    dcode128->element = 0;
-    dcode128->character = -1;
-    dcode128->s6 = 0;
+    codabar->direction = 0;
+    codabar->element = 0;
+    codabar->character = -1;
+    codabar->s7 = 0;
 }
 
-/* decode Code 128 symbols */
-zbar_symbol_type_t _zbar_decode_code128(zbar_decoder_t *dcode);
+/* decode Codabar symbols */
+zbar_symbol_type_t _zbar_decode_codabar(zbar_decoder_t *dcode);
 
 #endif
