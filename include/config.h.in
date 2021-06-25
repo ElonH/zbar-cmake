@@ -1,28 +1,46 @@
 /* include/config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* whether to build support for Codabar symbology */
+#cmakedefine01 ENABLE_CODABAR
+
 /* whether to build support for Code 128 symbology */
-#cmakedefine ENABLE_CODE128 @ENABLE_CODE128@
+#cmakedefine01 ENABLE_CODE128
 
 /* whether to build support for Code 39 symbology */
-#cmakedefine ENABLE_CODE39 @ENABLE_CODE39@
+#cmakedefine01 ENABLE_CODE39
+
+/* whether to build support for Code 93 symbology */
+#cmakedefine01 ENABLE_CODE93
+
+/* whether to build support for DataBar symbology */
+#cmakedefine01 ENABLE_DATABAR
 
 /* whether to build support for EAN symbologies */
-#cmakedefine ENABLE_EAN @ENABLE_EAN@
+#cmakedefine01 ENABLE_EAN
 
 /* whether to build support for Interleaved 2 of 5 symbology */
-#cmakedefine ENABLE_I25 @ENABLE_I25@
+#cmakedefine01 ENABLE_I25
 
-/* whether to build support for PDF417 symbology */
-#cmakedefine ENABLE_PDF417 @ENABLE_PDF417@
+/* whether to build support for PDF417 symbology (incomplete) */
+#cmakedefine01 ENABLE_PDF417
 
 /* whether to build support for QR Code */
-#cmakedefine ENABLE_QRCODE @ENABLE_QRCODE@
+#cmakedefine01 ENABLE_QRCODE
+
+/* whether to build support for SQ Code */
+#cmakedefine01 ENABLE_SQCODE
 
 /* Define to 1 if you have the `atexit' function. */
 #cmakedefine HAVE_ATEXIT @HAVE_ATEXIT@
 
+/* Define to 1 to use dbus */
+#cmakedefine HAVE_DBUS @HAVE_DBUS@
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #cmakedefine HAVE_DLFCN_H @HAVE_DLFCN_H@
+
+/* Define to 1 if you have the <errno.h> header file. */
+#cmakedefine HAVE_ERRNO_H @HAVE_ERRNO_H@
 
 /* Define to 1 if you have the <fcntl.h> header file. */
 #cmakedefine HAVE_FCNTL_H @HAVE_FCNTL_H@
@@ -33,8 +51,14 @@
 /* Define to 1 if you have the `getpagesize' function. */
 #cmakedefine HAVE_GETPAGESIZE @HAVE_GETPAGESIZE@
 
+/* Define to 1 to use GraphicsMagick */
+#cmakedefine HAVE_GRAPHICSMAGICK @HAVE_GRAPHICSMAGICK@
+
 /* Define if you have the iconv() function and it works. */
 #cmakedefine HAVE_ICONV @HAVE_ICONV@
+
+/* Define to 1 to use ImageMagick */
+#cmakedefine HAVE_IMAGEMAGICK @HAVE_IMAGEMAGICK@
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #cmakedefine HAVE_INTTYPES_H @HAVE_INTTYPES_H@
@@ -47,6 +71,9 @@
 
 /* Define to 1 if you have the `pthread' library (-lpthread). */
 #cmakedefine HAVE_LIBPTHREAD @HAVE_LIBPTHREAD@
+
+/* Define to 1 if you have the <libv4l2.h> header file. */
+#cmakedefine HAVE_LIBV4L2_H @HAVE_LIBV4L2_H@
 
 /* Define to 1 if you have the <linux/videodev2.h> header file. */
 #cmakedefine HAVE_LINUX_VIDEODEV2_H @HAVE_LINUX_VIDEODEV2_H@
@@ -93,6 +120,9 @@
 /* Define to 1 if you have the <sys/mman.h> header file. */
 #cmakedefine HAVE_SYS_MMAN_H @HAVE_SYS_MMAN_H@
 
+/* Define to 1 if you have the <sys/param.h> header file. */
+#cmakedefine HAVE_SYS_PARAM_H @HAVE_SYS_PARAM_H@
+
 /* Define to 1 if you have the <sys/shm.h> header file. */
 #cmakedefine HAVE_SYS_SHM_H @HAVE_SYS_SHM_H@
 
@@ -135,15 +165,11 @@
 /* Library revision */
 #cmakedefine LIB_VERSION_REVISION @LIB_VERSION_REVISION@
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #cmakedefine LT_OBJDIR @LT_OBJDIR@
 
 /* Define to 1 if assertions should be disabled. */
 #cmakedefine NDEBUG @NDEBUG@
-
-/* Define to 1 if your C compiler doesn't accept -c and -o together. */
-#cmakedefine NO_MINUS_C_MINUS_O @NO_MINUS_C_MINUS_O@
 
 /* Name of package */
 #cmakedefine PACKAGE @PACKAGE@
@@ -159,6 +185,9 @@
 
 /* Define to the one symbol short name of this package. */
 #cmakedefine PACKAGE_TARNAME @PACKAGE_TARNAME@
+
+/* Define to the home page for this package. */
+#cmakedefine PACKAGE_URL @PACKAGE_URL@
 
 /* Define to the version of this package. */
 #cmakedefine PACKAGE_VERSION @PACKAGE_VERSION@
@@ -176,7 +205,10 @@
 #define ZBAR_VERSION_MAJOR @ZBAR_VERSION_MAJOR@
 
 /* Program minor version (after '.') as a number */
-#cmakedefine ZBAR_VERSION_MINOR @ZBAR_VERSION_MINOR@
+#define ZBAR_VERSION_MINOR @ZBAR_VERSION_MINOR@
+
+/* Program patch version (after the second '.') as a number */
+#define ZBAR_VERSION_PATCH @ZBAR_VERSION_PATCH@
 
 /* Define for Solaris 2.5.1 so the uint32_t typedef from <sys/synch.h>,
    <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
@@ -199,7 +231,6 @@
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
-/* TODO */
 #ifndef __cplusplus
 #cmakedefine inline @inline@
 #endif
@@ -221,6 +252,5 @@
 #cmakedefine uintptr_t @uintptr_t@
 
 #ifndef X_DISPLAY_MISSING
-#cmakedefine HAVE_X @HAVE_X@
+#define HAVE_X
 #endif
-
